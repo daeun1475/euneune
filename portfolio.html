@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --pink:#FF6B9D;
+  --orange:#FF9A3C;
+  --yellow:#FFD166;
+  --teal:#06D6A0;
+  --blue:#118AB2;
+  --purple:#8B5CF6;
+  --bg:#FFFBF5;
+  --text:#1a1a2e;
+  --muted:#6b6b8a;
+  --card:#ffffff;
+  --border:#e8e4f0;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1rem 2.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(255,251,245,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-size:1.2rem;font-weight:800;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:0.85rem;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:8rem 2.5rem 5rem;
+  position:relative;overflow:hidden;
+}
+
+/* floating blobs */
+.blob{
+  position:absolute;border-radius:50%;filter:blur(70px);
+  pointer-events:none;animation:drift 8s ease-in-out infinite;
+}
+.blob1{width:500px;height:500px;background:rgba(255,107,157,0.18);top:-100px;right:-120px;animation-delay:0s}
+.blob2{width:400px;height:400px;background:rgba(6,214,160,0.15);bottom:-80px;left:-80px;animation-delay:-3s}
+.blob3{width:300px;height:300px;background:rgba(255,209,102,0.2);top:40%;right:20%;animation-delay:-5s}
+
+@keyframes drift{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(20px,-20px) scale(1.04)}
+  66%{transform:translate(-15px,15px) scale(0.97)}
+}
+
+.hero-inner{position:relative;z-index:1;max-width:960px;width:100%}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.45rem 1rem;
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:999px;
+  font-size:0.8rem;font-weight:500;color:var(--muted);
+  margin-bottom:1.75rem;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+}
+.hero-badge .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--teal);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(0.8)}}
+
+.hero-title{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(3rem,8vw,6.5rem);
+  font-weight:900;
+  line-height:1;
+  letter-spacing:-0.03em;
+  margin-bottom:1.5rem;
+}
+.hero-title .accent1{color:var(--pink)}
+.hero-title .accent2{color:var(--purple)}
+
+.hero-subtitle{
+  font-size:clamp(1rem,2vw,1.25rem);
+  font-weight:400;
+  color:var(--muted);
+  line-height:1.7;
+  max-width:500px;
+  margin-bottom:2.5rem;
+}
+
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+
+.cta-primary{
+  padding:0.85rem 2rem;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:#fff;font-weight:700;font-size:0.95rem;
+  border:none;border-radius:999px;cursor:pointer;
+  text-decoration:none;
+  box-shadow:0 8px 24px rgba(255,107,157,0.35);
+  transition:transform .2s,box-shadow .2s;
+}
+.cta-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,107,157,0.45)}
+
+.cta-secondary{
+  padding:0.85rem 2rem;
+  background:#fff;
+  color:var(--text);font-weight:600;font-size:0.95rem;
+  border:1.5px solid var(--border);border-radius:999px;cursor:pointer;
+  text-decoration:none;
+  transition:transform .2s,border-color .2s;
+}
+.cta-secondary:hover{transform:translateY(-2px);border-color:#c4b8e0}
+
+/* ── SECTION BASE ── */
+section{padding:6rem 2.5rem;max-width:1100px;margin:0 auto}
+.section-chip{
+  display:inline-block;
+  padding:0.3rem 0.9rem;
+  border-radius:999px;
+  font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.chip-pink{background:rgba(255,107,157,0.12);color:var(--pink)}
+.chip-teal{background:rgba(6,214,160,0.12);color:#059b73}
+.chip-purple{background:rgba(139,92,246,0.12);color:var(--purple)}
+.chip-orange{background:rgba(255,154,60,0.12);color:#d97706}
+
+.section-title{
+  font-size:clamp(2rem,4vw,2.8rem);
+  font-weight:800;letter-spacing:-0.02em;
+  line-height:1.15;margin-bottom:0.75rem;
+}
+.section-sub{
+  font-size:1rem;color:var(--muted);font-weight:400;
+  line-height:1.6;margin-bottom:3rem;max-width:520px;
+}
+
+/* ── ABOUT ── */
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+
+.about-card{
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:24px;
+  padding:2.5rem;
+  box-shadow:0 4px 32px rgba(0,0,0,0.05);
+}
+.about-avatar{
+  width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  display:grid;place-items:center;
+  font-size:2rem;margin-bottom:1.25rem;
+}
+.about-card h3{font-size:1.4rem;font-weight:800;margin-bottom:0.3rem}
+.about-card .role{font-size:0.9rem;color:var(--pink);font-weight:600;margin-bottom:1.25rem}
+.about-card p{font-size:0.93rem;color:var(--muted);line-height:1.8;margin-bottom:0.75rem}
+
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stat-box{
+  background:linear-gradient(135deg,rgba(255,107,157,0.08),rgba(139,92,246,0.08));
+  border:1.5px solid rgba(139,92,246,0.15);
+  border-radius:16px;padding:1.25rem;text-align:center;
+}
+.stat-big{font-size:2rem;font-weight:900;color:var(--purple);line-height:1;margin-bottom:0.3rem}
+.stat-small{font-size:0.78rem;color:var(--muted);font-weight:500}
+
+/* ── SKILLS ── */
+.skills-section{background:linear-gradient(180deg,#fff5fb 0%,var(--bg) 100%)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem}
+.skill-pill{
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:16px;
+  padding:1.25rem 1rem;
+  text-align:center;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  cursor:default;
+}
+.skill-pill:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08);border-color:#c4b8e0}
+.skill-emoji{font-size:1.75rem;margin-bottom:0.5rem}
+.skill-name{font-size:0.85rem;font-weight:700;margin-bottom:0.2rem}
+.skill-lvl{font-size:0.72rem;color:var(--muted)}
+
+/* ── PROJECTS ── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.project-card{
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:20px;
+  overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+}
+.project-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,0.1)}
+.project-thumb{
+  height:160px;display:flex;align-items:center;justify-content:center;
+  font-size:3.5rem;
+}
+.thumb-pink{background:linear-gradient(135deg,#FFE0ED,#FFDCE8)}
+.thumb-teal{background:linear-gradient(135deg,#D0FFF2,#C0FAE8)}
+.thumb-purple{background:linear-gradient(135deg,#EDE4FF,#E4D9FF)}
+
+.project-body{padding:1.5rem}
+.project-title{font-size:1.05rem;font-weight:800;margin-bottom:0.5rem}
+.project-desc{font-size:0.87rem;color:var(--muted);line-height:1.7;margin-bottom:1rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.ptag{
+  font-size:0.72rem;font-weight:600;
+  padding:0.25rem 0.65rem;border-radius:999px;
+}
+.ptag-pink{background:rgba(255,107,157,0.1);color:var(--pink)}
+.ptag-teal{background:rgba(6,214,160,0.1);color:#059b73}
+.ptag-purple{background:rgba(139,92,246,0.1);color:var(--purple)}
+.ptag-orange{background:rgba(255,154,60,0.1);color:#d97706}
+.ptag-blue{background:rgba(17,138,178,0.1);color:var(--blue)}
+
+/* ── CONTACT ── */
+.contact-card{
+  background:linear-gradient(135deg,#fff 60%,rgba(255,107,157,0.04));
+  border:1.5px solid var(--border);
+  border-radius:28px;
+  padding:3.5rem;
+  display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center;
+  box-shadow:0 4px 40px rgba(0,0,0,0.04);
+}
+.contact-title{font-size:2.2rem;font-weight:900;line-height:1.2;margin-bottom:1rem;letter-spacing:-0.02em}
+.contact-title .hi{color:var(--pink)}
+.contact-sub{font-size:0.95rem;color:var(--muted);line-height:1.75}
+
+.contact-items{display:flex;flex-direction:column;gap:0.85rem}
+.contact-item{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 1.25rem;
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:16px;
+  text-decoration:none;color:var(--text);
+  font-size:0.9rem;font-weight:500;
+  transition:transform .15s,border-color .15s,box-shadow .15s;
+}
+.contact-item:hover{transform:translateX(4px);border-color:#c4b8e0;box-shadow:0 4px 16px rgba(0,0,0,0.07)}
+.ci-icon{
+  width:38px;height:38px;border-radius:12px;
+  display:grid;place-items:center;font-size:1.1rem;flex-shrink:0;
+}
+.ci-pink{background:rgba(255,107,157,0.12)}
+.ci-gray{background:rgba(107,107,138,0.1)}
+.ci-blue{background:rgba(17,138,178,0.1)}
+
+/* ── FOOTER ── */
+footer{
+  text-align:center;padding:2rem;
+  border-top:1px solid var(--border);
+  font-size:0.82rem;color:var(--muted);
+}
+
+/* ── FADE IN ── */
+.fade{opacity:0;transform:translateY(28px);animation:fadeUp .65s ease forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .hero{padding:6rem 1.5rem 4rem}
+  section{padding:4rem 1.5rem}
+  .about-layout,.contact-card{grid-template-columns:1fr}
+  .contact-card{padding:2rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">나의 이름✨</a>
+  <ul class="nav-links">
+    <li><a href="#about">소개</a></li>
+    <li><a href="#skills">기술</a></li>
+    <li><a href="#projects">프로젝트</a></li>
+    <li><a href="#contact">연락처</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+
+  <div class="hero-inner">
+    <div class="hero-badge fade d1">
+      <span class="dot"></span>
+      현재 새로운 기회를 찾고 있어요
+    </div>
+
+    <h1 class="hero-title fade d2">
+      안녕하세요,<br>
+      저는 <span class="accent1">홍길동</span><span class="accent2">입니다</span>
+    </h1>
+
+    <p class="hero-subtitle fade d3">
+      창의적인 아이디어를 실제로 구현하는 걸 좋아하는 개발자입니다. 아름답고 직관적인 경험을 만들어갑니다.
+    </p>
+
+    <div class="hero-ctas fade d4">
+      <a class="cta-primary" href="#projects">작업물 보기 🚀</a>
+      <a class="cta-secondary" href="#contact">연락하기 💬</a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-layout">
+    <div>
+      <span class="section-chip chip-pink">About Me</span>
+      <h2 class="section-title">저는 이런<br>사람이에요</h2>
+      <p class="section-sub">열정 넘치고 배움을 즐기는 개발자. 코드 한 줄에 정성을 담습니다.</p>
+
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-big">3+</div>
+          <div class="stat-small">년 경력</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-big">20+</div>
+          <div class="stat-small">완성 프로젝트</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-big">12+</div>
+          <div class="stat-small">협업 클라이언트</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-big">∞</div>
+          <div class="stat-small">커피 ☕</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-card">
+      <div class="about-avatar">👋</div>
+      <h3>홍길동</h3>
+      <div class="role">Frontend Developer & UI Designer</div>
+      <p>디자인과 기술 사이 어딘가에서 살고 있습니다. 사용자가 "와, 이거 예쁘다"라고 말할 때 가장 보람을 느낍니다.</p>
+      <p>커피, 음악, 그리고 잘 짜인 코드를 사랑합니다. 새로운 도전을 두려워하지 않아요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-section" style="max-width:100%;padding:5rem 0">
+  <div style="max-width:1100px;margin:0 auto;padding:0 2.5rem">
+    <span class="section-chip chip-teal">Skills</span>
+    <h2 class="section-title">사용하는 기술들</h2>
+    <p class="section-sub">지속적으로 새로운 기술을 배우고 익힙니다.</p>
+
+    <div class="skills-grid">
+      <div class="skill-pill"><div class="skill-emoji">⚛️</div><div class="skill-name">React</div><div class="skill-lvl">심화</div></div>
+      <div class="skill-pill"><div class="skill-emoji">🟨</div><div class="skill-name">JavaScript</div><div class="skill-lvl">심화</div></div>
+      <div class="skill-pill"><div class="skill-emoji">💙</div><div class="skill-name">TypeScript</div><div class="skill-lvl">중급</div></div>
+      <div class="skill-pill"><div class="skill-emoji">🎨</div><div class="skill-name">CSS / Sass</div><div class="skill-lvl">심화</div></div>
+      <div class="skill-pill"><div class="skill-emoji">🐍</div><div class="skill-name">Python</div><div class="skill-lvl">중급</div></div>
+      <div class="skill-pill"><div class="skill-emoji">🐙</div><div class="skill-name">Git</div><div class="skill-lvl">심화</div></div>
+      <div class="skill-pill"><div class="skill-emoji">🖼️</div><div class="skill-name">Figma</div><div class="skill-lvl">중급</div></div>
+      <div class="skill-pill"><div class="skill-emoji">☁️</div><div class="skill-name">AWS</div><div class="skill-lvl">기초</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <span class="section-chip chip-purple">Projects</span>
+  <h2 class="section-title">최근 작업물</h2>
+  <p class="section-sub">직접 기획하고 개발한 프로젝트들입니다.</p>
+
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-thumb thumb-pink">🛍️</div>
+      <div class="project-body">
+        <h3 class="project-title">쇼핑몰 리뉴얼</h3>
+        <p class="project-desc">레거시 쇼핑몰을 React로 전면 리뉴얼. 로딩 속도 60% 개선, UX 전면 개편.</p>
+        <div class="project-tags">
+          <span class="ptag ptag-pink">React</span>
+          <span class="ptag ptag-blue">TypeScript</span>
+          <span class="ptag ptag-orange">Node.js</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb thumb-teal">📊</div>
+      <div class="project-body">
+        <h3 class="project-title">실시간 대시보드</h3>
+        <p class="project-desc">데이터 시각화 B2B SaaS. 다양한 차트와 실시간 필터 기능 탑재.</p>
+        <div class="project-tags">
+          <span class="ptag ptag-teal">Vue.js</span>
+          <span class="ptag ptag-blue">D3.js</span>
+          <span class="ptag ptag-purple">PostgreSQL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb thumb-purple">✈️</div>
+      <div class="project-body">
+        <h3 class="project-title">AI 여행 플래너</h3>
+        <p class="project-desc">AI 기반 맞춤 여행 일정 생성. 지도 API 연동 + 커뮤니티 공유 기능.</p>
+        <div class="project-tags">
+          <span class="ptag ptag-purple">Next.js</span>
+          <span class="ptag ptag-pink">Python</span>
+          <span class="ptag ptag-teal">Maps API</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding-bottom:5rem">
+  <span class="section-chip chip-orange">Contact</span>
+  <h2 class="section-title">같이 만들어요!</h2>
+
+  <div class="contact-card">
+    <div>
+      <div class="contact-title"><span class="hi">반갑습니다</span> 👋<br>언제든 연락주세요</div>
+      <p class="contact-sub">프로젝트 제안, 협업, 또는 그냥 커피 한 잔 하며 이야기 나눠도 좋아요. 항상 열려 있습니다.</p>
+    </div>
+
+    <div class="contact-items">
+      <a class="contact-item" href="mailto:your@email.com">
+        <div class="ci-icon ci-pink">✉️</div>
+        <span>your@email.com</span>
+      </a>
+      <a class="contact-item" href="https://github.com/" target="_blank">
+        <div class="ci-icon ci-gray">🐙</div>
+        <span>GitHub</span>
+      </a>
+      <a class="contact-item" href="https://linkedin.com/" target="_blank">
+        <div class="ci-icon ci-blue">💼</div>
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 홍길동 · 직접 만들었어요 ✨</p>
+</footer>
+
+</body>
+</html>
